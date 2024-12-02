@@ -1,0 +1,17 @@
+{
+  "name": "rag-empeng",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@upstash/vector": "^1.1.7",
+    "compute-cosine-similarity": "^1.1.0",
+    "groq-sdk": "^0.8.0",
+    "uuid": "^11.0.3"
+  }
+}
