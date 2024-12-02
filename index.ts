@@ -30,7 +30,7 @@ for (let i = 0; i < embeddings.length; i++) {
 
 console.log()
 
-// Vector DB insertion (Uncomment for first run)
+// Vector DB insertion (Uncomment for first run, biar nggak numpuk di DB)
 
 for (let i = 0; i < embeddings.length; i++) {
   insertVector(embeddings[i], { text: textExample[i] })
