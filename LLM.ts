@@ -7,7 +7,7 @@ export const chat = async (message: string, context: string = 'No prior context'
     "messages": [
       {
         role: "system",
-        content: `You are a highly knowledgeable assistant with Indonesia Language. Answer with indonesia language. Your task is to provide answers strictly based on the provided context. 
+        content: `You are a highly knowledgeable assistant. Your task is to provide answers strictly based on the provided context. 
         Do not include any information or assumptions that are not explicitly present in the context. 
         If the answer cannot be derived from the context, respond with: "The information is not available in the provided context."
         . This is your context:
