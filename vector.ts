@@ -44,6 +44,7 @@ export async function insertChunksIntoIndex() {
           const metadata = {
             id: uuidv4(),
             source: chunk.metadata.source,
+            page: chunk.metadata.loc.pageNumber,
             text: cleanedText,
           };
 
