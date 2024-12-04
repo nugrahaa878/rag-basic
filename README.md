@@ -6,7 +6,14 @@ To install dependencies:
 bun install
 ```
 
+To init PDF:
+```bash
+bun run initPDF.ts
+```
+
 To run:
+
+change the question in index.ts then run
 
 ```bash
 bun run index.ts

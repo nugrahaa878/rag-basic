@@ -8,7 +8,7 @@ export const chat = async (message: string, context: string = 'No prior context'
       {
         role: "system",
         content: `You are a highly knowledgeable assistant. Your task is to provide answers strictly based on the provided context. 
-        Do not include any information or assumptions that are not explicitly present in the context. 
+        Do not include any information or assumptions that are not explicitly present in the context. reply in indonesia.
         If the answer cannot be derived from the context, respond with: "The information is not available in the provided context."
         . This is your context:
       ${context}.`,
@@ -18,7 +18,7 @@ export const chat = async (message: string, context: string = 'No prior context'
         content: message
       }
     ],
-    "model": "gemma2-9b-it",
+    "model": "mixtral-8x7b-32768",
     "temperature": 1,
     "max_tokens": 1024,
     "top_p": 1,
