@@ -32,20 +32,30 @@ export async function insertChunksIntoIndex() {
     const chunkedDocs = await getChunkDocsFromPDF();
     console.log(`Loading ${chunkedDocs.length} chunks`);
 
-    for (const chunk of chunkedDocs) {
-      const vector = await getEmbedding(chunk.pageContent);
+    const batchSize = 50;
+    for (let i = 0; i < chunkedDocs.length; i += batchSize) {
+      const batch = chunkedDocs.slice(i, i + batchSize);
 
-      const metadata = {
-        id: uuidv4(),
-        source: chunk.metadata.source,
-        text: chunk.pageContent,
-      };
+      await Promise.all(batch.map(async (chunk) => {
+        try {
+          const cleanedText = chunk.pageContent.replace(/[\n\r]+/g, ' ').replace(/\s+/g, ' ').trim();
+          const vector = await getEmbedding(cleanedText);
 
-      await index.upsert({
-        id: metadata.id,
-        vector,
-        metadata,
-      });
+          const metadata = {
+            id: uuidv4(),
+            source: chunk.metadata.source,
+            text: cleanedText,
+          };
+
+          await index.upsert({
+            id: metadata.id,
+            vector,
+            metadata,
+          });
+        } catch (error) {
+          console.error(`Failed to insert chunk with ID ${chunk.metadata.id}:`, error);
+        }
+      }));
     }
 
     console.log("All chunks have been inserted into the vector db.");
@@ -53,3 +63,4 @@ export async function insertChunksIntoIndex() {
     console.error("Failed to insert chunks into the vector db:", error);
   }
 }
+

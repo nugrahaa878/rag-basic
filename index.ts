@@ -3,7 +3,7 @@ import { getEmbedding } from "./embedding"
 import { queryVector } from "./vector"
 
 
-const question = "siapa ahmad?"
+const question = "apa cita cita ahmad?"
 
 const embeddingQuery = await getEmbedding(question)
 
